@@ -4,7 +4,6 @@ Created on Wed Apr 24 22:13:50 2019
 
 @author: patrickqueres
 """
-
 import pandas as pd
 import requests
 import numpy as np
@@ -12,7 +11,6 @@ from bs4 import BeautifulSoup
 
 req = requests.get('http://receita.economia.gov.br/orientacao/tributaria/pagamentos-e-parcelamentos/taxa-de-juros-selic')
 if req.status_code == 200:
-    # print('Requisição bem sucedida!')
     content = req.content
     
 # Extrai a primeira tabela de alíquotas do site
@@ -47,3 +45,9 @@ df['2019'] = df['2019'].map(lambda x: x.rstrip('%'))
 
 
 print (df.head(12))
+
+# local_do_csv = 'p:/Documents/Treinamentos e aperfeiçoamentos/Mestrado/2019_01/Algoritmos e Estruturas de Dados/projeto/teste.csv'
+local_do_csv = 'selic.csv'
+df.to_csv (local_do_csv, index = True, header=True, encoding="utf-8")
+
+print('O arquivo selic.csv foi salvo na pasta do projeto!')

@@ -47,7 +47,3 @@ df['2019'] = df['2019'].map(lambda x: x.rstrip('%'))
 
 
 print (df.head(12))
-
-#df.fillna('0')
-
-# Convertendo tabelas para valores numéricos

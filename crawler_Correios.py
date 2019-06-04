@@ -14,7 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# objeto de dados com o código a ser rastreado
+# Objeto de dados com o código a ser rastreado
 data = {
     'objetos': 'LS873105012CH',
 }
@@ -25,7 +25,7 @@ url = "https://www2.correios.com.br/sistemas/rastreamento/resultado.cfm"
 response = requests.post(url, data=data)
 
 
-# Uso do BeautifulSoup para extrair a tabela de class/id "listing" e armazena no objeto table
+# Uso do BeautifulSoup para extrair a tabela de class/id "listing" e armazena no objeto correios
 doc = BeautifulSoup(response.text, 'html.parser')
 correios = doc.find("table", {"class":"listEvent sro"} )
 
@@ -34,9 +34,9 @@ correios = doc.find("table", {"class":"listEvent sro"} )
 table_str = str(correios)
 df = pd.read_html(table_str, header=0, index_col=0)[0]
 
-
+# Imprime os 10 primeiros itens do dataframe
 print (df.head(10))
 
-
+# Criar um arquivo CSV com todo o dataframe gerado
 local_do_csv = 'correios.csv'
 df.to_csv (local_do_csv, index=True, header=True, encoding="utf-8")

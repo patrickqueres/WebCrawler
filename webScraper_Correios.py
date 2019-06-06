@@ -22,12 +22,12 @@ data = {
 
 # Realiza um POST e download da página através da biblioteca request
 url = "https://www2.correios.com.br/sistemas/rastreamento/resultado.cfm"
-response = requests.post(url, data=data)
+reposta = requests.post(url, data=data)
 
 
 # Uso do BeautifulSoup para extrair a tabela de class/id "listing" e armazena no objeto correios
-doc = BeautifulSoup(response.text, 'html.parser')
-correios = doc.find("table", {"class":"listEvent sro"} )
+dados = BeautifulSoup(reposta.text, 'html.parser')
+correios = dados.find("table", {"class":"listEvent sro"} )
 
 
 # Converte a tabela em um dataframe utilizando a biblioteca Pandas
